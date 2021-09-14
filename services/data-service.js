@@ -4,6 +4,10 @@ export const getData = async () => {
   try {
     const response = await fetch(url);
     const json = await response.json();
+    if (json.error) {
+      console.error('Ошибка: ' + json.error);
+      return
+    }
     console.log('Успех:', JSON.stringify(json));
     return json;
   } catch (error) {

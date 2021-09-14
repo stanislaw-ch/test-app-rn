@@ -12,26 +12,28 @@ const StockPricesScreen = () => {
     const fetchData = async () => {
       const data = await getData();
       setData(data);
-      !data.error && setLoading(true);
+      setLoading(true);
+      // !data.error && setLoading(true);
     }
     fetchData();
   }, [])
   
+  // console.log('data: ', data.length);
   // const getSpareData = () => {
-  //   if (data.error) {
+  //   if (!data) {
   //     return 
   //   }
   //   const spare = {...data};
   //   return spare
   // }
 
-  // const spareData = getSpareData();
+  // const spareData = {...getSpareData()};
   // console.log('spareData: ', spareData);
   
   const getLoading = () => {
-    if (data.error) {
-      return
-    }
+    // if (data.error) {
+    //   return
+    // }
     return !isLoading && <Text>loading...</Text>
   }
 
@@ -39,11 +41,11 @@ const StockPricesScreen = () => {
     <ScrollView>
       <View style={styles.layout}>
         {getLoading()}
-        {data.error && <View style={styles.itemWrapper}>
-            <Text style={styles.title}>{data.error}</Text>
+        {!data && <View style={styles.itemWrapper}>
+            <Text style={styles.title}>{ERRORS.BAD_REQUESTS}</Text>
           </View>
         }
-        {Object.keys(data).map((key) => (
+        {data && Object.keys(spareData).map((key) => (
           <ListItem 
             key={data[key].id}
             name={key}
