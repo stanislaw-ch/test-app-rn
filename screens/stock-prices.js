@@ -7,45 +7,46 @@ import ListItem from '../components/list-item';
 const StockPricesScreen = () => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getData();
-      setData(data);
+      setIsError(false);
       setLoading(true);
-      // !data.error && setLoading(true);
+      try {
+        const data = await getData();
+        console.log('data: ', data);
+        setData(data);
+      } catch (error) {
+        console.log('error: ', error);
+        setIsError(true);
+      }
+      setLoading(false);
     }
     fetchData();
+    // setInterval(fetchData, 5000);
   }, [])
   
-  // console.log('data: ', data.length);
-  // const getSpareData = () => {
-  //   if (!data) {
-  //     return 
-  //   }
-  //   const spare = {...data};
-  //   return spare
-  // }
-
+  let spare;
+  // console.log('spare1: ', spare);
+  
+  if (data) {
+    spare = data;
+    // console.log('spare2: ', spare);
+  }
+  
   // const spareData = {...getSpareData()};
   // console.log('spareData: ', spareData);
   
-  const getLoading = () => {
-    // if (data.error) {
-    //   return
-    // }
-    return !isLoading && <Text>loading...</Text>
-  }
-
   return(
     <ScrollView>
       <View style={styles.layout}>
-        {getLoading()}
-        {!data && <View style={styles.itemWrapper}>
+        {isLoading && <Text>loading...</Text>}
+        {isError && <View style={styles.itemWrapper}>
             <Text style={styles.title}>{ERRORS.BAD_REQUESTS}</Text>
           </View>
         }
-        {data && Object.keys(spareData).map((key) => (
+        {data && Object.keys(spare).map((key) => (
           <ListItem 
             key={data[key].id}
             name={key}
