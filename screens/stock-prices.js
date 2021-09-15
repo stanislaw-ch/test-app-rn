@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View, ScrollView, Alert} from 'react-native';
 import { ERRORS } from '../utils/constants';
 import { getData } from '../services/data-service';
@@ -7,10 +8,13 @@ import ListItem from '../components/list-item';
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { dataStore } from '../store/data-store';
+
+const SET_INTERVAL = 5000;
 const store = dataStore();
 
 
 const StockPricesScreen = () => {
+  const navigation = useNavigation();
   useEffect(() => {
     runInAction(() => {
       store.setIsLoading(true);
@@ -18,6 +22,7 @@ const StockPricesScreen = () => {
     const fetchData = async () => {
       try {
         const data = await getData();
+        store.setIsError(false);
         store.setIsLoading(false);
         store.setData(data);
       } catch (error) {
@@ -27,8 +32,14 @@ const StockPricesScreen = () => {
       }
       store.setIsLoading(false);
     }
-    fetchData();
-    // setInterval(fetchData, 5000);
+    let updateByInterval;
+    navigation.addListener('focus', () => {
+      fetchData();
+      updateByInterval = setInterval(fetchData, SET_INTERVAL);
+    });
+    navigation.addListener('blur', () => {
+      clearInterval(updateByInterval);
+    });
   }, [])
   
   const isLoading = store.isLoading;

@@ -7,6 +7,7 @@ export const getData = async () => {
     const error = new Error('Ошибка: ' + json.error);
     throw error;
   } else {
+    console.log('json: ');
     return json;
   }
 }
