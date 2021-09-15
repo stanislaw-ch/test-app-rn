@@ -3,8 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import AboutAppScreen from './screens/about-app';
-import StockPricesScreen from './screens/stock-prices';
+import { About, StockPrices } from './screens';
 
 import { NAME_SCREENS } from './utils/constants';
 
@@ -13,7 +12,7 @@ const Tab = createBottomTabNavigator();
 export const AppNavigator = () =>{ 
 
   return (
-  <Tab.Navigator 
+  <Tab.Navigator
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
@@ -30,13 +29,14 @@ export const AppNavigator = () =>{
 
         return <Ionicons name={iconName} size={size} color={color} />;
       },
-      tabBarActiveTintColor: 'tomato',
+      tabBarActiveTintColor: '#1fa1b1',
       tabBarInactiveTintColor: 'gray',
-      showIcon: true
+      showIcon: true,
+      headerShown: false
     })}
     >
-      <Tab.Screen name={NAME_SCREENS.ABOUT_APP_TITLE} component={AboutAppScreen} />
-      <Tab.Screen name={NAME_SCREENS.STOCK_PRICES_TITLE} component={StockPricesScreen} />
+      <Tab.Screen name={NAME_SCREENS.ABOUT_APP_TITLE} component={About} />
+      <Tab.Screen name={NAME_SCREENS.STOCK_PRICES_TITLE} component={StockPrices} />
     </Tab.Navigator>
   )
 };
@@ -46,6 +46,7 @@ const App = () => {
     <NavigationContainer>
       <AppNavigator />
     </NavigationContainer>
+    
   )
 };
 

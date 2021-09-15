@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Button, StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NAME_SCREENS } from '../utils/constants';
 
@@ -7,7 +7,8 @@ const AboutAppScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.layout}>
+    <SafeAreaView style={styles.layout}>
+      <Image source={require('../assets/clipart4246799.png')}/>
       <Text style={styles.title}>{NAME_SCREENS.ABOUT_APP_TITLE}</Text>
       <Text style={styles.text}>Приложение отображает таблицу котировок с биржи poloniex, обновляемые в фоне по таймеру</Text>
 
@@ -18,7 +19,7 @@ const AboutAppScreen = () => {
           onPress={() => navigation.navigate(`${NAME_SCREENS.STOCK_PRICES_TITLE}`)}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -27,27 +28,29 @@ export default AboutAppScreen;
 const styles = StyleSheet.create({
   layout: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    color: "red",
+    backgroundColor: "white",
   },
   title: {
-    fontSize: 32,
-    marginBottom: 16,
+    fontSize: 27,
+    marginTop: 50,
+    marginBottom: 0,
   },
   text: {
-    fontSize: 20,
-    marginBottom: 16,
-    paddingLeft: 10,
-    paddingRight: 10,
+    fontSize: 16,
+    marginBottom: 60,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   button: {
     height: 40,
     width:160,
     borderRadius:10,
-    backgroundColor : "tomato",
+    backgroundColor : "#FC6222",
     marginLeft :50,
     marginRight:50,
-    marginTop :20,
+    marginTop : 0,
+    marginBottom: 130,
   },
 });

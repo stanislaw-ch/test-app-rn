@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, ScrollView, Alert} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, SafeAreaView} from 'react-native';
 import { ERRORS } from '../utils/constants';
 import { getData } from '../services/data-service';
 import ListItem from '../components/list-item';
@@ -9,7 +9,7 @@ import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { dataStore } from '../store/data-store';
 
-const SET_INTERVAL = 5000;
+const UPDATE_INTERVAL = 5000;
 const store = dataStore();
 
 
@@ -35,7 +35,7 @@ const StockPricesScreen = () => {
     let updateByInterval;
     navigation.addListener('focus', () => {
       fetchData();
-      updateByInterval = setInterval(fetchData, SET_INTERVAL);
+      updateByInterval = setInterval(fetchData, UPDATE_INTERVAL);
     });
     navigation.addListener('blur', () => {
       clearInterval(updateByInterval);
@@ -47,24 +47,26 @@ const StockPricesScreen = () => {
   const data = store.data;
   
   return(
-    <ScrollView>
-      <View style={styles.layout}>
-        {isLoading && <Text>loading...</Text>}
-        {isError && <View style={styles.itemWrapper}>
-            <Text style={styles.title}>{ERRORS.ERROR}</Text>
-          </View>
-        }
-        {data && Object.keys(data).map((key) => (
-          <ListItem 
-            key={data[key].id}
-            name={key}
-            last={data[key].last}
-            highestBid={data[key].highestBid}
-            percentChange={data[key].percentChange}
-          />
-        ))}
-      </View>
-    </ScrollView>
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.layout}>
+          {isLoading && <Text>loading...</Text>}
+          {isError && <View style={styles.itemWrapper}>
+              <Text style={styles.title}>{ERRORS.ERROR}</Text>
+            </View>
+          }
+          {data && Object.keys(data).map((key) => (
+            <ListItem 
+              key={data[key].id}
+              name={key}
+              last={data[key].last}
+              highestBid={data[key].highestBid}
+              percentChange={data[key].percentChange}
+            />
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -79,7 +81,6 @@ const styles = StyleSheet.create({
   },
   error: {
     color: "white",
-    backgroundColor: "red",
     width: "100%",
     height: 50,
     textAlign: "center",
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: 'center',
-    backgroundColor: 'red'
+    backgroundColor: '#FC6222'
   },
   title: {
     fontSize: 14,
