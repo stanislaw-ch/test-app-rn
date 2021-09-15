@@ -1,52 +1,49 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, ScrollView, Alert} from 'react-native';
 import { ERRORS } from '../utils/constants';
 import { getData } from '../services/data-service';
 import ListItem from '../components/list-item';
 
-const StockPricesScreen = () => {
-  const [data, setData] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+import { runInAction } from "mobx";
+import { observer } from "mobx-react-lite";
+import { dataStore } from '../store/data-store';
+const store = dataStore();
 
+
+const StockPricesScreen = () => {
   useEffect(() => {
+    runInAction(() => {
+      store.setIsLoading(true);
+    })
     const fetchData = async () => {
-      setIsError(false);
-      setLoading(true);
       try {
         const data = await getData();
-        console.log('data: ', data);
-        setData(data);
+        store.setIsLoading(false);
+        store.setData(data);
       } catch (error) {
-        console.log('error: ', error);
-        setIsError(true);
+        console.warn(error);
+        store.setIsError(true);
+        store.setIsLoading(false);
       }
-      setLoading(false);
+      store.setIsLoading(false);
     }
     fetchData();
     // setInterval(fetchData, 5000);
   }, [])
   
-  let spare;
-  // console.log('spare1: ', spare);
-  
-  if (data) {
-    spare = data;
-    // console.log('spare2: ', spare);
-  }
-  
-  // const spareData = {...getSpareData()};
-  // console.log('spareData: ', spareData);
+  const isLoading = store.isLoading;
+  const isError = store.isError;
+  const data = store.data;
   
   return(
     <ScrollView>
       <View style={styles.layout}>
         {isLoading && <Text>loading...</Text>}
         {isError && <View style={styles.itemWrapper}>
-            <Text style={styles.title}>{ERRORS.BAD_REQUESTS}</Text>
+            <Text style={styles.title}>{ERRORS.ERROR}</Text>
           </View>
         }
-        {data && Object.keys(spare).map((key) => (
+        {data && Object.keys(data).map((key) => (
           <ListItem 
             key={data[key].id}
             name={key}
@@ -60,7 +57,7 @@ const StockPricesScreen = () => {
   );
 };
 
-export default StockPricesScreen;
+export default observer(StockPricesScreen);
 
 const styles = StyleSheet.create({
   layout: {

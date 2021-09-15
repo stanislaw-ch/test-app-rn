@@ -4,5 +4,5 @@ export const NAME_SCREENS = {
 }
 
 export const ERRORS = {
-  BAD_REQUESTS: "Ошибка загрузки данных!",
+  ERROR: "Ошибка загрузки данных!",
 }
