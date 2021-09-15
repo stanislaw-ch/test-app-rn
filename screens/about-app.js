@@ -10,7 +10,7 @@ const AboutAppScreen = () => {
     <SafeAreaView style={styles.layout}>
       <Image source={require('../assets/clipart4246799.png')}/>
       <Text style={styles.title}>{NAME_SCREENS.ABOUT_APP_TITLE}</Text>
-      <Text style={styles.text}>Приложение отображает таблицу котировок с биржи poloniex, обновляемые в фоне по таймеру</Text>
+      <Text style={styles.text}>Приложение отображает таблицу котировок с биржи poloniex, которая обновляется в фоне по таймеру</Text>
 
       <View style={styles.button}>
         <Button
