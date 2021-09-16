@@ -17,12 +17,20 @@ const ListItem = ({ name, last, highestBid, percentChange}) => {
     if (prevAmount) {
       if(prevAmount > value) {
         colorStyles = {
-          color: 'green',
+          color: '#068485',
+          fontWeight: "700"
         };
       }
       if(prevAmount < value) {
         colorStyles = {
-          color: 'red',
+          color: '#E25947',
+          fontWeight: "700"
+        };
+      }
+      
+      if(prevAmount === value) {
+        colorStyles = {
+          color: 'gray',
         };
       }
     };
@@ -83,7 +91,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 14,
     fontWeight: "700",
-    color: "#1fa1b1",
+    color: "#068485",
   },
   subtitle: {
     marginTop: 4,

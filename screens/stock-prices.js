@@ -61,7 +61,7 @@ const StockPricesScreen = () => {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.layout}>
-          {isLoading && <ActivityIndicator size="large" color="#1fa1b1" />}
+          {isLoading && <ActivityIndicator size="large" color="#068485" />}
           {isError && <View style={styles.itemWrapper}>
               <Text style={styles.title}>{ERRORS.ERROR}</Text>
             </View>
