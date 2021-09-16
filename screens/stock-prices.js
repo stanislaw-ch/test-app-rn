@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, ScrollView, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, SafeAreaView, ActivityIndicator } from 'react-native';
 import { ERRORS } from '../utils/constants';
 import { getData } from '../services/data-service';
 import ListItem from '../components/list-item';
@@ -50,7 +50,8 @@ const StockPricesScreen = () => {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.layout}>
-          {isLoading && <Text>loading...</Text>}
+          {isLoading && <ActivityIndicator size="large" color="#1fa1b1" />}
+          {/* {isLoading && <Text>loading...</Text>} */}
           {isError && <View style={styles.itemWrapper}>
               <Text style={styles.title}>{ERRORS.ERROR}</Text>
             </View>
