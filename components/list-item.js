@@ -45,11 +45,11 @@ const ListItem = ({ name, last, highestBid, percentChange}) => {
 
         <View style={styles.rightWrapper}>
           <View style={{flexDirection: 'row'}}>
-            <Text style={[styles.subtitle]}>highestBid: </Text>
+            <Text style={[styles.subtitle]}>highest bid: </Text>
             <Text style={[styles.subtitle, onChange(highestBid)]}>{highestBid}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={[styles.subtitle]}>percentChange: </Text>
+            <Text style={[styles.subtitle]}>percent change: </Text>
             <Text style={[styles.subtitle, onChange(percentChange)]}>{Math.round(percentChange * 100) / 100}%</Text>
           </View>
         </View>
