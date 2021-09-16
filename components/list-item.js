@@ -89,9 +89,9 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   title: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: "700",
-    color: "#068485",
+    color: "#000",
   },
   subtitle: {
     marginTop: 4,
