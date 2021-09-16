@@ -2,20 +2,19 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 const ListItem = ({ name, last, highestBid, percentChange}) => {
-
   return (
       <View style={styles.itemWrapper}>
 
         <View style={styles.leftWrapper}>
           <View style={styles.titlesWrapper}>
-            <Text style={styles.title}>{name}</Text>
+            <Text style={styles.title}>{name.replace('_', '/')}</Text>
             <Text style={styles.subtitle}>last: {last}</Text>
           </View>
         </View>
 
         <View style={styles.rightWrapper}>
-          <Text style={styles.title}>highestBid: {highestBid}</Text>
-          <Text style={styles.subtitle}>percentChange: {percentChange}</Text>
+          <Text style={styles.subtitle}>highestBid: {highestBid}</Text>
+          <Text style={styles.subtitle}>percentChange: {Math.round(percentChange * 100) / 100}%</Text>
         </View>
 
       </View>
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     marginTop: 4,
-    fontSize: 12,
+    fontSize: 14,
     color: "gray",
   },
   rightWrapper: {
