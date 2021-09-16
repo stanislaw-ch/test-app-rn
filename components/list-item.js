@@ -1,20 +1,57 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { observer } from "mobx-react-lite";
 
 const ListItem = ({ name, last, highestBid, percentChange}) => {
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
+  
+  function onChange(value) {
+    let colorStyles;
+    const prevAmount = usePrevious(value);
+    if (prevAmount) {
+      if(prevAmount > value) {
+        colorStyles = {
+          color: 'green',
+        };
+      }
+      if(prevAmount < value) {
+        colorStyles = {
+          color: 'red',
+        };
+      }
+    };
+    return colorStyles;
+  }
+    
+
   return (
       <View style={styles.itemWrapper}>
 
         <View style={styles.leftWrapper}>
           <View style={styles.titlesWrapper}>
             <Text style={styles.title}>{name.replace('_', '/')}</Text>
-            <Text style={styles.subtitle}>last: {last}</Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={[styles.subtitle]}>last: </Text>
+              <Text style={[styles.subtitle, onChange(last)]}>{last}</Text>
+            </View>
           </View>
         </View>
 
         <View style={styles.rightWrapper}>
-          <Text style={styles.subtitle}>highestBid: {highestBid}</Text>
-          <Text style={styles.subtitle}>percentChange: {Math.round(percentChange * 100) / 100}%</Text>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={[styles.subtitle]}>highestBid: </Text>
+            <Text style={[styles.subtitle, onChange(highestBid)]}>{highestBid}</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={[styles.subtitle]}>percentChange: </Text>
+            <Text style={[styles.subtitle, onChange(percentChange)]}>{Math.round(percentChange * 100) / 100}%</Text>
+          </View>
         </View>
 
       </View>
@@ -58,4 +95,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ListItem
+export default observer(ListItem);
