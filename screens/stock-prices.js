@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, ScrollView, SafeAreaView, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, SafeAreaView, ActivityIndicator, Animated, Easing } from 'react-native';
 import { ERRORS } from '../utils/constants';
 import { getData } from '../services/data-service';
 import ListItem from '../components/list-item';
@@ -14,6 +14,16 @@ const store = dataStore();
 
 
 const StockPricesScreen = () => {
+  const translation = useRef(new Animated.Value(400)).current;
+  const easing = () => {
+    Animated.timing(translation, {
+      toValue: 0,
+      duration: 3500,
+      easing: Easing.bounce,
+      useNativeDriver: true
+    }).start();
+  };
+
   const navigation = useNavigation();
   useEffect(() => {
     runInAction(() => {
@@ -35,6 +45,7 @@ const StockPricesScreen = () => {
     let updateByInterval;
     navigation.addListener('focus', () => {
       fetchData();
+      easing();
       updateByInterval = setInterval(fetchData, UPDATE_INTERVAL);
     });
     navigation.addListener('blur', () => {
@@ -51,19 +62,19 @@ const StockPricesScreen = () => {
       <ScrollView>
         <View style={styles.layout}>
           {isLoading && <ActivityIndicator size="large" color="#1fa1b1" />}
-          {/* {isLoading && <Text>loading...</Text>} */}
           {isError && <View style={styles.itemWrapper}>
               <Text style={styles.title}>{ERRORS.ERROR}</Text>
             </View>
           }
           {data && Object.keys(data).map((key) => (
-            <ListItem 
-              key={data[key].id}
-              name={key}
-              last={data[key].last}
-              highestBid={data[key].highestBid}
-              percentChange={data[key].percentChange}
-            />
+            <Animated.View key={data[key].id} style={{ transform: [{ translateY: translation }] }}>
+              <ListItem
+                name={key}
+                last={data[key].last}
+                highestBid={data[key].highestBid}
+                percentChange={data[key].percentChange}
+              />
+            </Animated.View>
           ))}
         </View>
       </ScrollView>
