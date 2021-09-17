@@ -1,3 +1,6 @@
+.<img src="https://user-images.githubusercontent.com/57729597/133765429-51e721a7-9294-4f23-8825-446a6a4f5c20.png" width="350">
+<img src="https://user-images.githubusercontent.com/57729597/133766590-39d6a1c7-1099-4f1c-aa84-5a4813016631.png" width="350">
+
 # Тестовое задание для RN-разработчика
 ## Общие сведения
 
