@@ -61,7 +61,7 @@ const StockPricesScreen = () => {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.layout}>
-          {isLoading && <ActivityIndicator size="large" color="#068485" />}
+          {isLoading && <ActivityIndicator size="large" color={COLORS.darkCyan} />}
           {isError && <View style={styles.itemWrapper}>
               <Text style={styles.title}>{ERRORS.ERROR}</Text>
             </View>
@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'stretch',
-    // color: "red",
   },
   error: {
     color: COLORS.white,
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: 'center',
-    backgroundColor: COLORS.red
+    backgroundColor: COLORS.softRed
   },
   title: {
     fontSize: 14,

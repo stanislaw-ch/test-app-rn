@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { About, StockPrices } from './screens';
 
-import { NAME_SCREENS } from './constants';
+import { NAME_SCREENS, COLORS } from './constants';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,8 +29,8 @@ export const AppNavigator = () =>{
 
         return <Ionicons name={iconName} size={size} color={color} />;
       },
-      tabBarActiveTintColor: '#068485',
-      tabBarInactiveTintColor: 'gray',
+      tabBarActiveTintColor: COLORS.darkCyan,
+      tabBarInactiveTintColor: COLORS.gray,
       showIcon: true,
       headerShown: false
     })}

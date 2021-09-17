@@ -18,13 +18,13 @@ const ListItem = ({ name, last, highestBid, percentChange}) => {
     if (prevAmount) {
       if(prevAmount > value) {
         colorStyles = {
-          color: COLORS.green,
+          color: COLORS.darkCyan,
           fontWeight: "700"
         };
       }
       if(prevAmount < value) {
         colorStyles = {
-          color: COLORS.red,
+          color: COLORS.softRed,
           fontWeight: "700"
         };
       }

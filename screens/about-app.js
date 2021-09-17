@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { images, NAME_SCREENS } from '../constants';
+import { images, NAME_SCREENS, COLORS } from '../constants';
 
 const AboutAppScreen = () => {
   const navigation = useNavigation();
@@ -11,7 +11,7 @@ const AboutAppScreen = () => {
       <Image source={images.aboutImage}/>
       <Text style={styles.title}>{NAME_SCREENS.ABOUT_APP_TITLE}</Text>
       <Text style={styles.text}>Приложение отображает таблицу котировок с биржи 
-        <Text style={{color: '#068485', fontWeight: "bold", textTransform: 'uppercase'}}> poloniex</Text>
+        <Text style={{color: COLORS.darkCyan, fontWeight: "bold", textTransform: 'uppercase'}}> poloniex</Text>
         , которая обновляется в фоне по таймеру.
       </Text>
 
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: "white",
+    backgroundColor: COLORS.white,
   },
   title: {
     fontSize: 27,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   appButtonContainer: {
     elevation: 8,
-    backgroundColor: "#068485",
+    backgroundColor: COLORS.darkCyan,
     borderRadius: 50,
     paddingVertical: 15,
     paddingHorizontal: 25,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   appButtonText: {
     fontSize: 18,
-    color: "#fff",
+    color: COLORS.white,
     fontWeight: "bold",
     alignSelf: "center",
   }
