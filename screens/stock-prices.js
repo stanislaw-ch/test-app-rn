@@ -26,9 +26,6 @@ const StockPricesScreen = () => {
 
   const navigation = useNavigation();
   useEffect(() => {
-    runInAction(() => {
-      store.setIsLoading(true);
-    })
     const fetchData = async () => {
       try {
         const data = await getData();
@@ -44,12 +41,14 @@ const StockPricesScreen = () => {
     }
     let updateByInterval;
     navigation.addListener('focus', () => {
+      store.setIsLoading(true);
       fetchData();
       easing();
       updateByInterval = setInterval(fetchData, UPDATE_INTERVAL);
     });
     navigation.addListener('blur', () => {
       clearInterval(updateByInterval);
+      store.setIsLoading(false);
     });
   }, [])
   
