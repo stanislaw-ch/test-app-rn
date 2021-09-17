@@ -6,3 +6,5 @@ export const NAME_SCREENS = {
 export const ERRORS = {
   ERROR: "Ошибка загрузки данных!",
 }
+
+export default { NAME_SCREENS, ERRORS };

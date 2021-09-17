@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { About, StockPrices } from './screens';
 
-import { NAME_SCREENS } from './utils/constants';
+import { NAME_SCREENS } from './constants';
 
 const Tab = createBottomTabNavigator();
 

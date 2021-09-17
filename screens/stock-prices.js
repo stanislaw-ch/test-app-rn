@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View, ScrollView, SafeAreaView, ActivityIndicator, Animated, Easing } from 'react-native';
-import { ERRORS } from '../utils/constants';
+import { ERRORS, COLORS } from '../constants';
 import { getData } from '../services/data-service';
 import ListItem from '../components/list-item';
 
@@ -89,10 +89,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'stretch',
-    color: "red",
+    // color: "red",
   },
   error: {
-    color: "white",
+    color: COLORS.white,
     width: "100%",
     height: 50,
     textAlign: "center",
@@ -106,10 +106,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: 'center',
-    backgroundColor: '#FC6222'
+    backgroundColor: COLORS.red
   },
   title: {
     fontSize: 14,
-    color: "white",
+    color: COLORS.white,
   },
 });

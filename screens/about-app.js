@@ -1,14 +1,14 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { NAME_SCREENS } from '../utils/constants';
+import { images, NAME_SCREENS } from '../constants';
 
 const AboutAppScreen = () => {
   const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.layout}>
-      <Image source={require('../assets/clipart4246799.png')}/>
+      <Image source={images.aboutImage}/>
       <Text style={styles.title}>{NAME_SCREENS.ABOUT_APP_TITLE}</Text>
       <Text style={styles.text}>Приложение отображает таблицу котировок с биржи 
         <Text style={{color: '#068485', fontWeight: "bold", textTransform: 'uppercase'}}> poloniex</Text>

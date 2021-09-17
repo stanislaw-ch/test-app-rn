@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { observer } from "mobx-react-lite";
+import { COLORS } from '../constants';
 
 const ListItem = ({ name, last, highestBid, percentChange}) => {
   function usePrevious(value) {
@@ -17,20 +18,20 @@ const ListItem = ({ name, last, highestBid, percentChange}) => {
     if (prevAmount) {
       if(prevAmount > value) {
         colorStyles = {
-          color: '#068485',
+          color: COLORS.green,
           fontWeight: "700"
         };
       }
       if(prevAmount < value) {
         colorStyles = {
-          color: '#E25947',
+          color: COLORS.red,
           fontWeight: "700"
         };
       }
       
       if(prevAmount === value) {
         colorStyles = {
-          color: 'gray',
+          color: COLORS.gray,
         };
       }
     };
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: 'center',
-    backgroundColor: 'white'
+    backgroundColor: COLORS.white
   },
   leftWrapper: {
     flexDirection: "row",
@@ -91,12 +92,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     fontWeight: "700",
-    color: "#000",
+    color: COLORS.black,
   },
   subtitle: {
     marginTop: 4,
     fontSize: 14,
-    color: "gray",
+    color: COLORS.gray,
   },
   rightWrapper: {
     alignItems: 'flex-end',
