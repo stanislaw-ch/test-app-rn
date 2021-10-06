@@ -5,7 +5,6 @@ import { ERRORS, COLORS } from '../constants';
 import { getData } from '../services/data-service';
 import ListItem from '../components/list-item';
 
-import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { dataStore } from '../store/data-store';
 
@@ -37,19 +36,22 @@ const StockPricesScreen = () => {
         store.setIsError(true);
         store.setIsLoading(false);
       }
-      store.setIsLoading(false);
     }
     let updateByInterval;
-    navigation.addListener('focus', () => {
+    navigation.addListener('focus', async () => {
       store.setIsLoading(true);
       fetchData();
       easing();
-      updateByInterval = setInterval(fetchData, UPDATE_INTERVAL);
+      updateByInterval = await setInterval(fetchData, UPDATE_INTERVAL);
     });
     navigation.addListener('blur', () => {
       clearInterval(updateByInterval);
       store.setIsLoading(false);
     });
+    return () => {
+      clearInterval(updateByInterval);
+      store.setIsLoading(false);
+    };
   }, [])
   
   const isLoading = store.isLoading;
