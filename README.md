@@ -1,8 +1,17 @@
-.<img src="https://user-images.githubusercontent.com/57729597/133765429-51e721a7-9294-4f23-8825-446a6a4f5c20.png" width="350">
+# Test task for React Native developer
+Test task for React Native developer
+
+## Table of contents
+- Overview
+- Technologies
+- Tasks
+
+## Overview
+<img src="https://user-images.githubusercontent.com/57729597/133765429-51e721a7-9294-4f23-8825-446a6a4f5c20.png" width="350">
 <img src="https://user-images.githubusercontent.com/57729597/133766590-39d6a1c7-1099-4f1c-aa84-5a4813016631.png" width="350">
 
-# Тестовое задание для RN-разработчика
-## Общие сведения
+## Tasks
+### Общие сведения
 
 Приложение должно состоять из двух экранов:
 
@@ -16,11 +25,11 @@
 8.  (опционально, плюс) возможно рассмотреть использование mobx + mobx-react как в приложении в целом, так  и под конкретные нужды вроде нотификаций о изменении “таблицы”.
 9.  (опционально, плюс) возможно рассмотреть использование rxjs для организации observable потока данных
 
-## Экран "О приложении"
+### Экран "О приложении"
 Содержит:
 1.  Элемент навигации, позволяющий перейти на экран Котировки
 
-## Экран "Котировки"
+### Экран "Котировки"
 Содержит:
 1.  Элемент навигации, позволяющий перейти на экран О приложении
 2.  Таблицу, содержащую котировки с биржи poloniex, обновляемые в фоне по таймеру. В ячейке показывать имя тикера, last, highestBid и percentChange.
@@ -32,7 +41,13 @@
 4.  (опционально, плюс) анимация обновления значений в элементах таблицы
 5.  (опционально, плюс) спиннер при начальной загрузке данных (до момента получения первого пакета данных либо ошибки таблицей; после открытия экрана).
 
-## Ссылки
+### Ссылки
 Публичное API  Poloniex  [https://poloniex.com/support/api/](https://poloniex.com/support/api/), запрос, который нам нужен [https://poloniex.com/public?command=returnTicker](https://poloniex.com/public?command=returnTicker)
 
 react-navigation [http://reactnavigation.org/](http://reactnavigation.org/)
+
+## Technologies
+The stack used for this project was:
+- React Native
+- mobx
+- Github
