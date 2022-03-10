@@ -50,4 +50,4 @@ react-navigation [http://reactnavigation.org/](http://reactnavigation.org/)
 The stack used for this project was:
 - React Native
 - mobx
-- Github
+- Git
